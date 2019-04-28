@@ -12,8 +12,8 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = 8080;
-
+var PORT = process.env.PORT || 8000;
+require("dotenv").config();
 // Initialize Express
 var app = express();
 
@@ -26,7 +26,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
-
+app.use(routes);
+app.get('/', (req, res) => {
+    res.send(process.env.SECRET_KEY);
+})
 // Routes
 
 // GET Route for scraping Medium Website
