@@ -26,12 +26,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
-app.get('/', (req, res) => {
-    res.send(process.env.MONGODB_URI);
-})
+
 // Routes
 app.get('/', (req, res) => {
-    res.send(process.env.SECRET_KEY);
+    res.send(process.env.MONGODB_URI);
 })
 
 // GET Route for scraping Medium Website
